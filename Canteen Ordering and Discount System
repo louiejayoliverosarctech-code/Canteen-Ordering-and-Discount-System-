@@ -1,0 +1,91 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int choice, quantity;
+    double price = 0, total = 0;
+    double discount = 0, finalTotal;
+    char again;
+
+    cout << "====================================\n";
+    cout << "     CANTEEN ORDERING SYSTEM\n";
+    cout << "====================================\n";
+
+    do {
+        cout << "\n========== MENU ==========\n";
+        cout << "1. Burger       - P50.00\n";
+        cout << "2. Fries        - P35.00\n";
+        cout << "3. Sandwich     - P40.00\n";
+        cout << "4. Soft Drinks  - P25.00\n";
+        cout << "5. Rice Meal    - P65.00\n";
+        cout << "==========================\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                price = 50;
+                break;
+            case 2:
+                price = 35;
+                break;
+            case 3:
+                price = 40;
+                break;
+            case 4:
+                price = 25;
+                break;
+            case 5:
+                price = 65;
+                break;
+            default:
+                cout << "Invalid choice!\n";
+                continue;
+        }
+
+        cout << "Enter quantity: ";
+        cin >> quantity;
+
+        if (quantity <= 0) {
+            cout << "Invalid quantity!\n";
+            continue;
+        }
+
+        total += price * quantity;
+
+        cout << "Order added successfully!\n";
+
+        cout << "Do you want to order again? (Y/N): ";
+        cin >> again;
+
+    } while (again == 'Y' || again == 'y');
+
+    // Discount computation
+    if (total >= 500) {
+        discount = total * 0.10;
+    }
+    else if (total >= 300) {
+        discount = total * 0.05;
+    }
+
+    finalTotal = total - discount;
+
+    // Receipt
+    cout << fixed << setprecision(2);
+
+    cout << "\n====================================\n";
+    cout << "          ORDER RECEIPT\n";
+    cout << "====================================\n";
+
+    cout << "Total Amount : P" << total << endl;
+    cout << "Discount     : P" << discount << endl;
+    cout << "------------------------------------\n";
+    cout << "Final Total  : P" << finalTotal << endl;
+    cout << "====================================\n";
+
+    cout << "Thank you for ordering!\n";
+
+    return 0;
+}
